@@ -4,10 +4,6 @@ import axios  from 'axios';
 import React from "react";
 const Ordersummary = () =>{
 
-  const[orid , setorid] = useState(null);
-  const[cusid , setCusid] = useState(null);
-  const[amount, setAmount] = useState(null);
-  const[date, setDate] = useState(null);
   const[result, setResult] = useState({});
 
   let token = localStorage.getItem('token');
@@ -18,7 +14,6 @@ const Ordersummary = () =>{
       const url = `https://restaurant-app-devops.herokuapp.com/order?token=${token}`;
       const res = await axios.get(url);
       setResult(res);
-      console.log(result);
     }
     request();
   },[])
@@ -38,15 +33,15 @@ const Ordersummary = () =>{
           <th></th>
         </thead>
         <tbody>
-          {/* { result.map((item) => {
-              <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.customerId}</td>
-              <td>{item.amount}</td>
-              <td>{item.date}</td>
-              <td><a href="#view" class="btn btn-danger">View</a></td>
-            </tr>
-          })}  */}
+        {result.data?.map((item) => {
+            return (<tr>
+                <td>{item.id}</td>
+                <td>{item.customerId}</td>
+                <td>{item.totalPrice}</td>
+                <td>{item.createdAt}</td>
+                <td><a href="#view" class="btn btn-danger">View</a></td>
+            </tr>)
+        })}
         </tbody>
       </table>
       <h3>Total Sales=</h3>
