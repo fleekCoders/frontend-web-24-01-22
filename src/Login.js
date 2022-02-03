@@ -28,7 +28,7 @@ const Login = () =>{
             .then(result => {
                 if (JSON.parse(result).message === true) {
                     localStorage.setItem('token', JSON.parse(result).token);
-                    alert(JSON.parse(result).token);
+                    // alert(JSON.parse(result).token);
                     window.location.href = "summary";
                 }
                 else {
